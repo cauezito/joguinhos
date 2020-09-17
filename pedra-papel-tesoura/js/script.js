@@ -9,6 +9,8 @@ document.getElementById('tesoura').addEventListener('click', function(){
 });
 
 var padrao = document.getElementById('padrao');
+var alertaResultado = document.getElementById('alertaResultado');
+var spanResultado = document.getElementById('resultado');
 
 function simulaJogadaMaquina(jogadaUsuario){
     let jogadas = ['pedra', 'papel', 'tesoura'];
@@ -16,11 +18,11 @@ function simulaJogadaMaquina(jogadaUsuario){
     let jogadaFinal = jogadas[posicao];
 
     if(jogadaFinal == 'pedra'){
-        padrao.style.backgroundImage= "url('img/pedra.png')";
+        padrao.src= "../img/pedra.png"; 
     } else if (jogadaFinal == 'papel'){
-        padrao.style.backgroundImage= "url('img/papel.png')";
+        padrao.src= "../img/papel.png"; 
     } else if (jogadaFinal == 'tesoura'){
-        padrao.style.backgroundImage= "url('img/tesoura.png')";
+        padrao.src= "../img/tesoura.png"; 
     }
     
     calculaResultado(jogadaUsuario, jogadas[posicao]);
@@ -31,14 +33,39 @@ function calculaResultado(usuario, maquina){
     if(usuario == "papel" && maquina == "pedra" ||
     usuario == "tesoura" && maquina == "papel" ||
     usuario == "pedra" && maquina == "tesoura"){
-        alert("você venceu!");
+        notificacaoVencedor();
     } 
     //máquina vencedora
     else if(maquina == "papel" && usuario == "pedra" ||
     maquina == "tesoura" && usuario == "papel" ||
     maquina == "pedra" && usuario == "tesoura"){
-        alert("você perdeu!");
+        notificacaoDerrota();
     }
-    
+    //empate
+    else{
+        notificacaoEmpate();
+    }
 
+}
+
+function notificacaoVencedor(){
+  if(alertaResultado.classList.contains('d-none')){
+    alertaResultado.classList.remove('d-none');
+  }
+  spanResultado.innerText = 'Parabéns, você venceu! :)';
+
+}
+function notificacaoDerrota(){
+    if(alertaResultado.classList.contains('d-none')){
+        alertaResultado.classList.remove('d-none');
+      }
+      spanResultado.innerText = 'Ah, não... Você perdeu! :(';
+    
+}
+
+function notificacaoEmpate(){
+    if(alertaResultado.classList.contains('d-none')){
+        alertaResultado.classList.remove('d-none');
+      }
+      spanResultado.innerText = 'Empate.';  
 }

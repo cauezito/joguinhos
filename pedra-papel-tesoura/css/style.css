@@ -1,0 +1,21 @@
+body{
+    background-color: #30475e;
+}
+#pedra:hover{
+    height: 140px;
+    width: 140px;
+}
+#papel:hover{
+    height: 140px;
+    width: 140px;
+}
+#tesoura:hover{
+    height: 140px;
+    width: 140px;
+}
+.pc{
+    margin: 0 0 0 -20px;
+}
+.jogadas{
+    margin: 0 0 30px 0;
+}
