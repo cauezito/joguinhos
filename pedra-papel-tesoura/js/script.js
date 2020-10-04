@@ -110,6 +110,8 @@ function fimDoJogo(ganhador){
 }
 
 function anunciarGanhador(ganhador){
+    animate(tela);
+
     tela.innerText = "";
     let resultadoH1;
     let textoBotaoNovoJogo = document.createTextNode("Quero jogar novamente!");
@@ -121,10 +123,8 @@ function anunciarGanhador(ganhador){
 
     tela.classList.add("text-center");
 
-    btnNovoJogo.classList.add("btn" , "btn-light", "btn-lg", "mt-4", "mb-4");  
-    textoResultado.classList.add("mb-4", "mt-4"); 
-
-    tela.style.color = "white";
+    btnNovoJogo.classList.add("btn" , "btn-dark", "btn-lg", "mt-4", "mb-4");  
+    textoResultado.classList.add("mb-4", "mt-4");     
 
     if(ganhador === "pc"){
         tela.style.backgroundColor = "#c81912";
@@ -153,5 +153,17 @@ function recomecaJogo(){
         location.reload();
         pc = 0;
         usuario = 0;
+    });
+}
+
+function animate(element) {
+    transition.begin(element, [
+        ["transform", "rotate(0)", "rotate(360deg)", "2s"],
+        ["background-color", "#ffffff", "#ADB5C7", "1s", function(element, finished) {
+            if (!finished) return;
+            transition.begin(element, ["background-color", "#ADB5C7", "#ffffff", "1s"]);
+        }]
+    ], {
+        timingFunction: "linear"
     });
 }
