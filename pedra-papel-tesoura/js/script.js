@@ -13,6 +13,7 @@ var alertaResultado = document.getElementById('alertaResultado');
 var spanResultado = document.getElementById('resultado');
 var placarPC = document.getElementById('placar-pc');
 var placarUsuario = document.getElementById('placar-usuario');
+var tela = document.getElementById('tela-jogo');
 
 var usuario = 0;
 var pc = 0;
@@ -59,14 +60,14 @@ function notificacaoVencedor(){
   if(alertaResultado.classList.contains('d-none')){
     alertaResultado.classList.remove('d-none');
   }
-  spanResultado.innerText = 'Parabéns, você venceu! :)';
+  spanResultado.innerText = 'Ponto pra você! :)';
 
 }
 function notificacaoDerrota(){
     if(alertaResultado.classList.contains('d-none')){
         alertaResultado.classList.remove('d-none');
       }
-      spanResultado.innerText = 'Ah, não... Você perdeu! :(';
+      spanResultado.innerText = 'Ponto para o pc! :(';
     
 }
 
@@ -84,5 +85,23 @@ function alteraPlacar(vencedor){
     } else {
         usuario++;
         placarUsuario.innerText = "VOCÊ: " + usuario;
+    }
+    
+    verificaPontuacao();
+}
+
+function verificaPontuacao(){
+    if(pc === 10) fimDoJogo("pc");
+    if(usuario === 10) fimDoJogo("usuario");
+}
+
+function fimDoJogo(ganhador){
+    tela.style.height = "100%";
+    if(ganhador === "pc"){
+        tela.style.backgroundColor = "red";
+        tela.innerText = "";
+    } else {
+        tela.style.backgroundColor = "green";
+        tela.innerText = "";
     }
 }
