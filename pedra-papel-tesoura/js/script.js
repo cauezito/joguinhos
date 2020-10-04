@@ -8,6 +8,7 @@ document.getElementById('tesoura').addEventListener('click', function(){
    simulaJogadaMaquina('tesoura');
 });
 
+
 var padrao = document.getElementById('padrao');
 var alertaResultado = document.getElementById('alertaResultado');
 var spanResultado = document.getElementById('resultado');
@@ -116,6 +117,8 @@ function anunciarGanhador(ganhador){
     let divResultado = document.createElement("div");
     let textoResultado = document.createElement("h2");
 
+    btnNovoJogo.id = "btnNovoJogo";
+
     tela.classList.add("text-center");
 
     btnNovoJogo.classList.add("btn" , "btn-light", "btn-lg", "mt-4", "mb-4");  
@@ -139,6 +142,16 @@ function anunciarGanhador(ganhador){
     divResultado.appendChild(textoResultado);
     divResultado.appendChild(btnNovoJogo);
 
-    tela.appendChild(divResultado);  
+    tela.appendChild(divResultado); 
     
+    recomecaJogo();   
+    
+}
+
+function recomecaJogo(){
+    document.getElementById('btnNovoJogo').addEventListener('click', function(){
+        location.reload();
+        pc = 0;
+        usuario = 0;
+    });
 }
