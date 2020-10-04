@@ -15,6 +15,8 @@ var placarPC = document.getElementById('placar-pc');
 var placarUsuario = document.getElementById('placar-usuario');
 var tela = document.getElementById('tela-jogo');
 
+
+
 var usuario = 0;
 var pc = 0;
 
@@ -61,12 +63,12 @@ function notificacaoVencedor(){
     alertaResultado.classList.remove('d-none');
   }
   spanResultado.innerText = 'Ponto pra você! :)';
-
 }
+
 function notificacaoDerrota(){
     if(alertaResultado.classList.contains('d-none')){
         alertaResultado.classList.remove('d-none');
-      }
+    }
       spanResultado.innerText = 'Ponto para o pc! :(';
     
 }
@@ -74,8 +76,9 @@ function notificacaoDerrota(){
 function notificacaoEmpate(){
     if(alertaResultado.classList.contains('d-none')){
         alertaResultado.classList.remove('d-none');
-      }
-      spanResultado.innerText = 'Empate.';  
+    }
+
+    spanResultado.innerText = 'Empate.';  
 }
 
 function alteraPlacar(vencedor){
@@ -96,12 +99,35 @@ function verificaPontuacao(){
 }
 
 function fimDoJogo(ganhador){
-    tela.style.height = "100%";
     if(ganhador === "pc"){
-        tela.style.backgroundColor = "red";
-        tela.innerText = "";
+        anunciarGanhador("pc");
+    } else if(ganhador === "usuario") {
+        anunciarGanhador("usuario")
     } else {
-        tela.style.backgroundColor = "green";
-        tela.innerText = "";
+        anunciarGanhador("empate");
     }
+}
+
+function anunciarGanhador(ganhador){
+    tela.innerText = "";
+    let resultadoH1;
+    let divResultado = document.createElement("div");
+    let textoResultado = document.createElement("h2");
+    textoResultado.classList.add("text-center");
+    tela.style.color = "white";
+
+    if(ganhador === "pc"){
+        tela.style.backgroundColor = "#c81912";
+        resultadoH1 = document.createTextNode("É uma pena! Você perdeu...");
+    } else if (ganhador === "usuario") {
+        tela.style.backgroundColor = "#335d2d";
+        resultadoH1 = document.createTextNode("Que arraso! Você venceu.");
+    } else {
+        resultadoH1 = document.createTextNode("Ninguém ganhou!");
+    }    
+    
+    textoResultado.append(resultadoH1);
+    
+    divResultado.appendChild(textoResultado);
+    tela.appendChild(divResultado);    
 }
