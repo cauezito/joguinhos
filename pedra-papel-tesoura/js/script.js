@@ -111,9 +111,16 @@ function fimDoJogo(ganhador){
 function anunciarGanhador(ganhador){
     tela.innerText = "";
     let resultadoH1;
+    let textoBotaoNovoJogo = document.createTextNode("Quero jogar novamente!");
+    let btnNovoJogo = document.createElement("button");
     let divResultado = document.createElement("div");
     let textoResultado = document.createElement("h2");
-    textoResultado.classList.add("text-center");
+
+    tela.classList.add("text-center");
+
+    btnNovoJogo.classList.add("btn" , "btn-light", "btn-lg", "mt-4", "mb-4");  
+    textoResultado.classList.add("mb-4", "mt-4"); 
+
     tela.style.color = "white";
 
     if(ganhador === "pc"){
@@ -127,7 +134,11 @@ function anunciarGanhador(ganhador){
     }    
     
     textoResultado.append(resultadoH1);
+    btnNovoJogo.append(textoBotaoNovoJogo);
     
     divResultado.appendChild(textoResultado);
-    tela.appendChild(divResultado);    
+    divResultado.appendChild(btnNovoJogo);
+
+    tela.appendChild(divResultado);  
+    
 }
