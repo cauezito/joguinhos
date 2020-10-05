@@ -129,9 +129,15 @@ function anunciarGanhador(ganhador){
     if(ganhador === "pc"){
         tela.style.backgroundColor = "#c81912";
         resultadoH1 = document.createTextNode("É uma pena! Você perdeu...");
+        setInterval(function() {
+            $("#placar-pc").toggle()
+        },300);
     } else if (ganhador === "usuario") {
         tela.style.backgroundColor = "#335d2d";
         resultadoH1 = document.createTextNode("Que arraso! Você venceu.");
+        setInterval(function() {
+            $("#placar-usuario").toggle()
+        },300);
     } else {
         resultadoH1 = document.createTextNode("Ninguém ganhou!");
     }    
@@ -143,6 +149,8 @@ function anunciarGanhador(ganhador){
     divResultado.appendChild(btnNovoJogo);
 
     tela.appendChild(divResultado); 
+
+    
     
     recomecaJogo();   
     
@@ -167,3 +175,4 @@ function animate(element) {
         timingFunction: "linear"
     });
 }
+
